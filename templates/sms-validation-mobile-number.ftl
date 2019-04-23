@@ -18,12 +18,14 @@
             </div>
             <form id="kc-totp-login-form" class="${properties.kcFormClass!} govuk-grid-column-two-thirds" action="${url.loginAction}" method="post">
                 <div class="govuk-form-group ${errorClass!""}">
-                    <label for="mobileNumber" class="govuk-label">${msg("phoneNumber")}</label>
-                    <input type="tel" id="mobileNumber" class="govuk-input" name="mobile_number" value="${(phoneNumber!'')}" autocomplete="mobile tel" aria-describedby="mobileNumber-hint" />
+                    <div class="${properties.kcFormGroupClass!}">
+                        <label for="mobileNumber" class="${properties.kcLabelClass!}">${msg("phoneNumber")}</label>
+                        <input tabindex="1" id="mobileNumber" class="${properties.kcInputClass!}" name="mobile_number" type="tel" value="${(phoneNumber!'')}" autocomplete="mobile tel" aria-describedby="mobileNumber-hint" />
+                    </div>
                 </div>
 
                 <div class="govuk-form-group">
-                    <input class="govuk-button" type="submit" value="${msg("doSubmit")}"/>
+                    <input tabindex="4" class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonBlockClass!} ${properties.kcButtonLargeClass!}" name="login" id="kc-login" type="submit" value="${msg("doLogIn")}"/>
                 </div>
             </form>
         </div>
