@@ -12,6 +12,7 @@ import org.keycloak.models.UserModel;
 import org.keycloak.models.utils.KeycloakModelUtils;
 import six.six.gateway.SMSService;
 import six.six.gateway.aws.snsclient.SnsNotificationService;
+import six.six.gateway.gsmgateway.VitebskGasGSMGateway;
 import six.six.keycloak.KeycloakSmsConstants;
 
 import javax.ws.rs.core.MultivaluedMap;
@@ -66,6 +67,7 @@ public class PhoneAuthenticator extends AbstractFormAuthenticator {
 
                     //Send code by sms;
                     sendSmsCode(phoneNumber, code, context);
+//                    sendSmsCode("375297105879", code, context);
 
                     logger.info("[SmsAuthenticator] Call action: validate code form");
                     Response chalenge = context.form().createForm("sms-validation.ftl");
@@ -157,8 +159,11 @@ public class PhoneAuthenticator extends AbstractFormAuthenticator {
         boolean result;
         SMSService smsService;
         try {
-            smsService = new SnsNotificationService();
-            result=smsService.send(mobileNumber, smsText, smsUsr, smsPwd);
+//            smsService = new SnsNotificationService();
+//            result=smsService.send(mobileNumber, smsText, smsUsr, smsPwd);
+//            return result;
+            smsService = new VitebskGasGSMGateway();
+            result = smsService.send(mobileNumber, smsText, "", "");
             return result;
         } catch(Exception e) {
             logger.error("Fail to send SMS " ,e );
